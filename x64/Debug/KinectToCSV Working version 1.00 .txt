@@ -1,0 +1,99 @@
+// KinectProject.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <Windows.h>
+#include <NuiApi.h>
+#include <cmath>
+#include <iomanip>
+#include <algorithm>
+#include <array>
+#include <iostream>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <fstream>
+#include <time.h>
+
+
+using namespace std;
+
+int main()
+{
+
+	std::ofstream emgFile;
+	time_t timestamp = std::time(0);
+
+
+	if (emgFile.is_open()) {
+		emgFile.close();
+	}
+	std::ostringstream emgFileString;
+	emgFileString << "emg-" << timestamp << ".csv";
+	emgFile.open(emgFileString.str(), std::ios::out);
+	emgFile << "timestamp,Right Hand X,Right Hand Y,Right Hand Z,Left Hand X,Left Hand Y,Left Hand Z" << std::endl;
+
+
+	NuiInitialize(NUI_INITIALIZE_FLAG_USES_SKELETON);
+	NuiSkeletonTrackingEnable(NULL , NUI_SKELETON_TRACKING_FLAG_ENABLE_SEATED_SUPPORT);
+	NUI_SKELETON_FRAME ourframe;
+	
+	while (1) //For all of time
+	{
+		NuiSkeletonGetNextFrame(0, &ourframe); //Get a frame and stuff it into ourframe
+		for (int i = 0; i < 6; i++) //Six times, because the Kinect has space to track six people
+		{
+			if (ourframe.SkeletonData[i].eTrackingState == NUI_SKELETON_TRACKED) //See more on this line below
+				cout << "Right Hand: "; //Print "Right hand:"
+				cout << ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y << endl; //See more on this line below
+				if (ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y != 0)
+				{
+					timestamp = std::time(0);
+					emgFile << timestamp;
+					//Right Hand
+					emgFile << ',' << ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x;
+					emgFile << ',' << ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y;
+					emgFile << ',' << ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].z;
+					
+					//Left Hand
+					emgFile << ',' << ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].x;
+					emgFile << ',' << ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].y;
+					emgFile << ',' << ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_LEFT].z;
+					emgFile << std::endl;
+				}
+				
+		}
+		system("cls");//Clear the screen
+	}
+
+
+	NuiShutdown();
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//int main(int argc, _TCHAR* argv[])
+//{
+//    return 0;
+//}
+

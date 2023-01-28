@@ -1,0 +1,3 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (KinectProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  KinectProject.vcxproj -> D:\Work\Masters\Thesis\Third trial\Code\DataCollection\x64\Debug\DataCollection.exe
+  KinectProject.vcxproj -> D:\Work\Masters\Thesis\Third trial\Code\DataCollection\x64\Debug\DataCollection.pdb (Full PDB)
