@@ -1,3 +1,13 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (KinectProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  KinectProject.vcxproj -> D:\Work\Masters\Thesis\Third trial\Code\DataCollection\x64\Debug\DataCollection.exe
-  KinectProject.vcxproj -> D:\Work\Masters\Thesis\Third trial\Code\DataCollection\x64\Debug\DataCollection.pdb (Full PDB)
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (KinectProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  DataCollection.cpp
+C:\Program Files\Microsoft SDKs\mymyo\include\myo\cxx\detail\ThrowOnError.hpp(39,17): warning C4297: 'myo::ThrowOnError::~ThrowOnError': function assumed not to throw an exception but does
+C:\Program Files\Microsoft SDKs\mymyo\include\myo\cxx\detail\ThrowOnError.hpp(39,17): message : destructor or deallocator has a (possibly implicit) non-throwing exception specification
+C:\Program Files\Microsoft SDKs\mymyo\include\myo\cxx\detail\ThrowOnError.hpp(45,17): warning C4297: 'myo::ThrowOnError::~ThrowOnError': function assumed not to throw an exception but does
+C:\Program Files\Microsoft SDKs\mymyo\include\myo\cxx\detail\ThrowOnError.hpp(45,17): message : destructor or deallocator has a (possibly implicit) non-throwing exception specification
+H:\zizo-thesis\upper-limb-motor-functions-data-collection\KinectProject\DataCollection.cpp(192,125): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+H:\zizo-thesis\upper-limb-motor-functions-data-collection\KinectProject\DataCollection.cpp(193,125): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+H:\zizo-thesis\upper-limb-motor-functions-data-collection\KinectProject\DataCollection.cpp(194,125): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+H:\zizo-thesis\upper-limb-motor-functions-data-collection\KinectProject\DataCollection.cpp(407,32): warning C4101: 'e': unreferenced local variable
+  stdafx.cpp
+  Generating Code...
+  KinectProject.vcxproj -> H:\zizo-thesis\upper-limb-motor-functions-data-collection\x64\Debug\DataCollection.exe
