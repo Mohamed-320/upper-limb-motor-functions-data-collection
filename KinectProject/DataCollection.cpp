@@ -396,10 +396,8 @@ int main(int argc, char** argv)
 			return EXIT_SUCCESS;
 		}
 	}
-	
-	 //If a standard exception occurred, we print out its message and exit.
-}
-catch (const std::exception& e) {
+	 //If a standard exception occurred, we print out its message and exit
+	} catch (const std::exception& e) {
 	std::cerr << "Error: " << e.what() << std::endl;
 	std::cerr << "Press enter to continue.";
 	std::cin.ignore();
