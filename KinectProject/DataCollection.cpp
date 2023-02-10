@@ -85,7 +85,6 @@ public:
 		orientationEulerFile << "timestamp,roll,pitch,yaw" << std::endl;
 
 
-
 		// Open file for orientation log
 		if (KienctRightHandFile.is_open()) {
 			KienctRightHandFile.close();
@@ -94,16 +93,11 @@ public:
 		KienctRightHandFileString << "KinectHandsData" << ".csv";
 		KienctRightHandFile.open(KienctRightHandFileString.str(), std::ios::out);
 		KienctRightHandFile << "timestamp,RH X ,RH Y,RH Z,RS X, RS Y,RS Z,RE X,RE Y,RE Z,RW X,RW Y,RW Z,LS X,LS Y,LS Z,LC X,LC Y,LC Z" << std::endl;
-
-
-
-
 	}
 
 	// onEmgData() is called whenever a paired Myo has provided new EMG data, and EMG streaming is enabled.
 	void onEmgData(myo::Myo* myo, uint64_t timestamp, const int8_t* emg)
 	{
-
 		emgFile << timestamp;
 		for (size_t i = 0; i < 8; i++) {
 			emgFile << ',' << static_cast<int>(emg[i]);
@@ -153,6 +147,7 @@ public:
 	// onGyroscopeData is called whenever new gyroscope data is provided
 	// Be warned: This will not make any distiction between data from other Myo armbands
 	void onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vector3< float > &gyro) {
+		
 		printVector(gyroFile, timestamp, gyro);
 
 	}
@@ -193,9 +188,9 @@ public:
 			MotionDifferenceMargin[1] = ((abs(PreviousFrame.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y))		*	PercentageToDetectMovementStop);
 			MotionDifferenceMargin[2] = ((abs(PreviousFrame.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].z))		*	PercentageToDetectMovementStop);
 
-			if ( /* there is  movement in X,Y and Z for the hand
-					by comparing the current value with the previous as follow:
-					(Previous value + Motion Difference Margin) <= Current Value <= (Previous value - Motion Difference Margin) */
+			if ( 
+				// there is  movement in X,Y and Z for the hand, by comparing the current value with the previous as follow:
+				//	(Previous value + Motion Difference Margin) <= Current Value <= (Previous value - Motion Difference Margin)
 
 				(CurrentFrame.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x >= (PreviousFrame.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x + MotionDifferenceMargin[0])
 				 ||
@@ -234,7 +229,6 @@ public:
 			return false;
 		}
 	}
-
 
 
 	void RetrieveKinectData(void)
@@ -325,16 +319,9 @@ public:
 
 				}
 			}
-
 		}
-
-
 		return;
 	}
-
-
-
-
 
 	// The files we are logging to
 	std::ofstream emgFile;
@@ -418,5 +405,4 @@ catch (const std::exception& e) {
 	std::cin.ignore();
 	return 1;
 }
-
 }
